@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "loopline",
+    "name": "LoopLine",
     "slug": "loopline",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,10 +19,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rinwaoluwa.loopline"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b7aa05e2-972f-454f-b87f-86080df129fd"
+      }
+    },
+    "owner": "rinwaoluwa"
   }
 }
