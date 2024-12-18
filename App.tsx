@@ -1,23 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Icon from './assets/svgs/icon';
+import { ArticleDetail } from './src/screens/ArticleDetail/ArticleDetails';
+import { Feed } from './src/screens/Feed/Feed';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Loop line</Text>
-      <Icon name='chat' size={42} />
-      <Icon name='bell' fill={'red'} />
-      <StatusBar style="auto" />
-    </View>
+    // <Feed />
+    <ArticleDetail />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -8,17 +8,17 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/splash.png",
+        "backgroundColor": "#000000"
       },
       "package": "com.rinwaoluwa.loopline"
     },
@@ -30,6 +30,15 @@
         "projectId": "b7aa05e2-972f-454f-b87f-86080df129fd"
       }
     },
-    "owner": "rinwaoluwa"
+    "owner": "rinwaoluwa",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/OpenSans-Bold.ttf", "./assets/fonts/OpenSans-Medium.ttf", "./assets/fonts/OpenSans-Regular.ttf"]
+        }
+      ]
+      
+    ]
   }
 }
