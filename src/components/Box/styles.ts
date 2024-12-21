@@ -5,7 +5,7 @@ import { normalise, pixelSizeHorizontal, pixelSizeVertical } from "../../config/
 export const styles = StyleSheet.create({
     container: {
         backgroundColor: palette['white'],
-        paddingTop: pixelSizeHorizontal(60),
+        paddingTop: pixelSizeHorizontal(40),
         paddingBottom: pixelSizeHorizontal(10),
         paddingHorizontal: pixelSizeVertical(20)
     },

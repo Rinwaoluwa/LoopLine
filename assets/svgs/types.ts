@@ -7,6 +7,8 @@ import search from "./icons/search.svg";
 import chat from "./icons/chat.svg";
 import back from "./icons/angle-left-b.svg";
 import bell from "./icons/bell.svg";
+import send from "./icons/send.svg";
+import bookmarkFill from "./icons/bookmark-fill.svg";
 
 export const ICONS = {
     home,
@@ -15,6 +17,8 @@ export const ICONS = {
     chat,
     back,
     bell,
+    send,
+    bookmarkFill,
 };
 
 export type IconName = keyof typeof ICONS;

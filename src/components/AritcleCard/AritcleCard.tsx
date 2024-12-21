@@ -1,25 +1,51 @@
-import React from 'react';
-import { View, Text, Image, Pressable, StyleSheet, Dimensions, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { View, Pressable, ImageBackground } from 'react-native';
 import Icon from '../../../assets/svgs/icon';
 import { palette } from '../../config/palette';
 import { styles } from './styles';
 import { AppText } from '../AppText/AppText';
 import { Spacing } from '../Spacing/spacing';
 import { ArticleCardProps } from './types';
+import { useAppDispatch, useAppSelector } from '../../config/store/hooks';
+import { RootState } from '../../config/store/store';
+import { addBookmark, removeBookmark } from '../../config/store/slice/bookmarkSlice';
 
 
-export function ArticleCard ({
+export function ArticleCard({
+    id,
     title,
     category,
     authorName,
     date,
+    image,
     onPress,
-    onBookmarkPress,
 }: ArticleCardProps) {
+    const dispatch = useAppDispatch();
+    const bookmarks = useAppSelector((state: RootState) => state.bookmarks);
+    const isBookmarked = bookmarks.some(bookmark => bookmark.id === id);
+    const [saved, setSaved] = useState(false);
+
+    const handleBookmark = () => {
+        setSaved(!saved)
+        if (isBookmarked) {
+            dispatch(removeBookmark(id));
+        } else {
+            dispatch(addBookmark({
+                id,
+                title,
+                category,
+                authorName,
+                date,
+                image,
+            }));
+        }
+    };
+
+
     return (
         <Pressable style={styles.container} onPress={onPress}>
             <ImageBackground
-                source={require('../../../assets/test.png')}
+                source={{ uri: image }}
                 style={styles.imageContainer}
                 imageStyle={styles.image}
             >
@@ -29,25 +55,25 @@ export function ArticleCard ({
                     </View>
                     <Pressable
                         style={styles.bookmarkButton}
-                        onPress={onBookmarkPress}
+                        onPress={handleBookmark}
                         hitSlop={8}
                     >
-                        <Icon name="bookmark" fill={palette['white']} />
+                        <Icon name={saved ? "bookmarkFill" : "bookmark"} fill={palette['white']} />
                     </Pressable>
                 </View>
             </ImageBackground>
 
             <View style={styles.content}>
-                <AppText fontFamily="OpenSans-Bold" fontSize={18} color='black' numberOfLines={2}>{title}</AppText>
+                <AppText fontFamily="OpenSans-Bold" fontSize={16} color='black' numberOfLines={2}>{title}</AppText>
                 <Spacing height={12} />
 
                 <View style={styles.footer}>
-                    <AppText fontFamily='OpenSans-Regular' color='grey'>
-                        By: {authorName}
+                    <AppText numberOfLines={1} fontSize={12} fontFamily='OpenSans-Regular' color='grey' style={styles.byLine}>
+                        {authorName}
                     </AppText>
 
-                    <AppText fontFamily='OpenSans-Regular' color='grey'>
-                        {date} •
+                    <AppText fontFamily='OpenSans-Regular' color='grey' style={styles.date}>
+                        {date}
                     </AppText>
                 </View>
             </View>

@@ -15,27 +15,26 @@ export function ArticleTile({
 
     return (
         <Pressable style={styles.container} onPress={onPress}>
-            <Image source={image} style={styles.image} />
+            <Image source={{ uri: image }} style={styles.image} />
             <View style={styles.content}>
                 <View style={styles.topRow}>
-
                     <View style={styles.categoryPill}>
                         <AppText fontFamily="OpenSans-Regular" color="grey">
                             {category}
                         </AppText>
                     </View>
                     <AppText fontFamily="OpenSans-Regular" color="grey">
-                        {date} •
+                        {date}
                     </AppText>
 
                 </View>
 
                 <Spacing height={12} />
                 <AppText
-                    fontSize={18}
+                    fontSize={16}
                     fontFamily="OpenSans-Bold"
                     color="black"
-                    numberOfLines={2} 
+                    numberOfLines={2}
                 >
                     {title}
                 </AppText>

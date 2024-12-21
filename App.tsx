@@ -1,10 +1,6 @@
-import { ArticleDetail } from './src/screens/ArticleDetail/ArticleDetails';
-import { Feed } from './src/screens/Feed/Feed';
+import { Router } from './src/Routes/Router';
 
 export default function App() {
-  return (
-    // <Feed />
-    <ArticleDetail />
-  );
+  return <Router />;
 }
 

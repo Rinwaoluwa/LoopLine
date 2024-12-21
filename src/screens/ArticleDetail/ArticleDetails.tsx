@@ -1,15 +1,16 @@
 import { ImageBackground, Pressable, ScrollView, View } from "react-native";
 import { Box } from "../../components/Box/Box";
-import { AppTextInput } from "../../components/AppTextInput/AppTextInput";
 import { useForm } from "react-hook-form";
-import { styles } from "./Styles";
+import { styles } from "./styles";
 import Icon from "../../../assets/svgs/icon";
 import { AppText } from "../../components/AppText/AppText";
 import { palette } from "../../config/palette";
 import { normalise } from "../../config/normalise";
 import { Spacing } from "../../components/Spacing/spacing";
 
-export function ArticleDetail() {
+export function ArticleDetail({ route, navigation }: any) {
+    const article = route.params;
+
     const {
         control,
         handleSubmit,
@@ -24,7 +25,9 @@ export function ArticleDetail() {
     return (
         <Box>
             <View style={styles.header}>
-                <Icon name="back" size={normalise(30)} />
+                <Pressable onPress={() => navigation.goBack()}>
+                    <Icon name="back" size={normalise(30)} />
+                </Pressable>
                 <Icon name="bell" />
             </View>
             <ScrollView style={styles.flex} bounces={false} showsVerticalScrollIndicator={false}>

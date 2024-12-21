@@ -38,8 +38,14 @@ export const styles = StyleSheet.create({
     },
     footer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        gap: 4,
         alignItems: 'center',
+    },
+    byLine: {
+        flex: 1,
+    },
+    date: {
+        flexShrink: 0
     },
     statsContainer: {
         flex: 1,
