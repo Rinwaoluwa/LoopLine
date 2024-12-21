@@ -7,6 +7,7 @@ export interface Bookmark {
   date: string;
   category: string;
   authorName: string;
+  isBookmarked: boolean;
 }
 
 interface BookmarkState {
@@ -28,7 +29,8 @@ const bookmarkSlice = createSlice({
       }
     },
     removeBookmark: (state, action: PayloadAction<string>) => {
-      state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
+      const newBookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload)
+      state.bookmarks = newBookmarks;
     },
   },
 });

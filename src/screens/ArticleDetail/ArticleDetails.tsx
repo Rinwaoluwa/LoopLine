@@ -1,27 +1,44 @@
 import { ImageBackground, Pressable, ScrollView, View } from "react-native";
 import { Box } from "../../components/Box/Box";
-import { useForm } from "react-hook-form";
 import { styles } from "./styles";
 import Icon from "../../../assets/svgs/icon";
 import { AppText } from "../../components/AppText/AppText";
 import { palette } from "../../config/palette";
 import { normalise } from "../../config/normalise";
 import { Spacing } from "../../components/Spacing/spacing";
+import { useState } from "react";
+import { addBookmark, removeBookmark } from "../../config/store/slice/bookmarkSlice";
+import { useAppDispatch } from "../../config/store/hooks";
 
 export function ArticleDetail({ route, navigation }: any) {
-    const article = route.params;
-
+    const dispatch = useAppDispatch();
     const {
-        control,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({
-        defaultValues: {
-            search: "",
-        },
-        mode: "onSubmit",
-    });
+        id,
+        title,
+        category,
+        authorName,
+        date,
+        image,
+        isBookmarked
+    } = route.params;
+    const [saved, setSaved] = useState(isBookmarked);
 
+    const handleBookmark = () => {
+        setSaved(!saved)
+        if (saved) {
+            dispatch(removeBookmark(id));
+        } else {
+            dispatch(addBookmark({
+                id,
+                title,
+                category,
+                authorName,
+                date,
+                image,
+                isBookmarked: saved,
+            }));
+        }
+    };
     return (
         <Box>
             <View style={styles.header}>
@@ -34,36 +51,36 @@ export function ArticleDetail({ route, navigation }: any) {
                 <Spacing height={24} />
 
                 <ImageBackground
-                    source={require('../../../assets/test.png')}
+                    source={{ uri: image }}
                     style={styles.imageContainer}
                     imageStyle={styles.image}
                 >
                     <Pressable
                         style={styles.bookmarkButton}
-                        // onPress={onBookmarkPress}
+                        onPress={handleBookmark}
                         hitSlop={8}
                     >
-                        <Icon name="bookmark" fill={palette['white']} />
+                        <Icon name={saved ? "bookmarkFill" : "bookmark"} fill={palette['white']} />
                     </Pressable>
                 </ImageBackground>
                 <Spacing height={18} />
 
                 <View style={styles.topRow}>
                     <View style={styles.categoryPill}>
-                        <AppText fontFamily='OpenSans-Regular' color='black'>Tech</AppText>
+                        <AppText fontFamily='OpenSans-Regular' color='black'>{category}</AppText>
                     </View>
-                    <AppText fontFamily='OpenSans-Regular' color='grey'>Jan 1, 2021 •</AppText>
+                    <AppText fontFamily='OpenSans-Regular' color='grey'>{date}</AppText>
                 </View>
 
                 <Spacing height={12} />
 
                 <AppText fontFamily="OpenSans-Bold" fontSize={18} color='black' numberOfLines={2}>
-                    New VR Headsets That Will Shape the Metaverse
+                    {title}
                 </AppText>
 
                 <Spacing height={12} />
 
-                <AppText fontFamily='OpenSans-Regular' color='black'>By: Rinwa</AppText>
+                <AppText fontFamily='OpenSans-Regular' color='black'>{authorName}</AppText>
 
                 <Spacing height={15} />
 

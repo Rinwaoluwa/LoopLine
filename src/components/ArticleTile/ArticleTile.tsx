@@ -29,7 +29,7 @@ export function ArticleTile({
 
                 </View>
 
-                <Spacing height={12} />
+                <Spacing height={6} />
                 <AppText
                     fontSize={16}
                     fontFamily="OpenSans-Bold"

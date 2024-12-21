@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Pressable, ImageBackground } from 'react-native';
 import Icon from '../../../assets/svgs/icon';
 import { palette } from '../../config/palette';
@@ -22,8 +22,18 @@ export function ArticleCard({
 }: ArticleCardProps) {
     const dispatch = useAppDispatch();
     const bookmarks = useAppSelector((state: RootState) => state.bookmarks);
-    const isBookmarked = bookmarks.some(bookmark => bookmark.id === id);
-    const [saved, setSaved] = useState(false);
+    const isBookmarked = bookmarks.find(bookmark => bookmark.id === id);
+    const [saved, setSaved] = useState(isBookmarked?.isBookmarked ?? false);
+
+
+    // We have this useEffect here to monitor changes to the isBookmarked variable.
+    // This ensures that anytime a user bookmarks or unbookmarks the article from the detailed view,
+    // it is reflected here as well. If the article is not bookmarked, we set the saved state to false.
+    useEffect(()=> {
+        if(!isBookmarked) {
+            setSaved(false);
+        }
+    },[isBookmarked?.isBookmarked]);
 
     const handleBookmark = () => {
         setSaved(!saved)
@@ -37,6 +47,7 @@ export function ArticleCard({
                 authorName,
                 date,
                 image,
+                isBookmarked: saved,
             }));
         }
     };

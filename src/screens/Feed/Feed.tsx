@@ -15,6 +15,7 @@ import { fetchTopStories } from "../../apis/apis";
 import { useEffect, useState } from "react";
 import { ContentLoader } from "../../components/Loader/ContentLoader";
 import { ListLoader } from "../../components/Loader/ListLoader";
+import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 
 const categories = [
@@ -82,7 +83,8 @@ export function Feed({ navigation }: any) {
         }
         fetch();
 
-    }
+    };
+
 
     useEffect(() => {
         const getTopStories = async () => {
@@ -110,6 +112,28 @@ export function Feed({ navigation }: any) {
             setLoadingArticles(false);
         }
 
+    }
+
+    if (!topStories.length || !articles.length) {
+        return (
+            <>
+                <EmptyState />
+                <AppText
+                    fontFamily="OpenSans-Bold"
+                    fontSize={18}
+                    style={styles.textStyle}
+                >
+                    You appear to be offline
+                </AppText>
+                <AppText
+                    fontFamily="OpenSans-Medium"
+                    fontSize={16}
+                    style={styles.textStyle}
+                >
+                    You can't use LoopLine until you're connected to the internet.
+                </AppText>
+            </>
+        )
     }
 
     return (
@@ -147,7 +171,7 @@ export function Feed({ navigation }: any) {
                                 date={item.date}
                                 image={item.multimedia}
                                 onPress={() => navigation.navigate("article", item)}
-                                id={item}
+                                id={item.id}
                             />
                         )}
                     />
