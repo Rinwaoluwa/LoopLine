@@ -151,7 +151,7 @@ export function Feed({ navigation }: any) {
                                 authorName={item.byline}
                                 date={item.date}
                                 image={item.multimedia}
-                                onPress={() => navigation.navigate("article", item)}
+                                onPress={() => navigation.navigate("article", {...item, image: item.multimedia, category: item.subsection || item.section || query})}
                                 id={item.id}
                             />
                         )}
@@ -185,7 +185,7 @@ export function Feed({ navigation }: any) {
                                 category={selectedCategory.label}
                                 date={item.date}
                                 title={item.title}
-                                onPress={() => navigation.navigate("article", {...item, image: item.multimedia,category: selectedCategory.label})}
+                                onPress={() => navigation.navigate("article", {...item, image: item.multimedia, category: selectedCategory.label})}
                             />
                         )}
                     />
