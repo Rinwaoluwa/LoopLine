@@ -5,26 +5,23 @@ import { styles } from './styles';
 import { AppText } from '../AppText/AppText';
 import { Spacing } from '../Spacing/spacing';
 
-
 export function ChatBubble({ message }: ChatBubbleProps) {
-    const { text, isSent, avatar } = message;
-    console.log(isSent)
+    const { text, isSent } = message;
 
     return (
         <View style={[
             styles.container,
             isSent ? styles.sentContainer : styles.receivedContainer
         ]}>
-            {isSent && avatar && (
+            {isSent && (
                 <Image
-                    // source={{ uri: avatar }}
-                    source={require("../../../assets/friend.png")}
+                    source={require("../../../assets/friend.jpg")}
                     style={styles.avatar}
                 />
             )}
             <View style={[
                 styles.bubble,
-                isSent ? styles.sentBubble : styles.receivedBubble
+                isSent ?  styles.receivedBubble : styles.sentBubble,
             ]}>
                 <AppText
                     fontFamily="OpenSans-Regular"

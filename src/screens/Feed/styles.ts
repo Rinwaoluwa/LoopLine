@@ -9,5 +9,8 @@ export const styles = StyleSheet.create({
     },
     recommedationsContainer: {
         height: heightPixel(330),
+    },
+    textStyle: {
+        textAlign: "center"
     }
 })

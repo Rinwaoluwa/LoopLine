@@ -3,7 +3,8 @@ export interface Message {
     text: string;
     isSent: boolean;
     avatar?: string;
-    timestamp: Date;
+    timestamp: string;
+    isTyping: boolean;
 }
 
 export interface ChatBubbleProps {

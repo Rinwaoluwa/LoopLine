@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { heightPixel, normalise, widthPixel } from "../../config/normalise";
+import { heightPixel, normalise, pixelSizeHorizontal, widthPixel } from "../../config/normalise";
 import { palette } from "../../config/palette";
 
 export const styles = StyleSheet.create({
@@ -21,12 +21,12 @@ export const styles = StyleSheet.create({
         paddingVertical: heightPixel(8),
         borderRadius: normalise(16),
     },
-    sentBubble: {
+    receivedBubble: {
         backgroundColor: palette['grey--2'],
         borderTopLeftRadius: normalise(4),
         marginLeft: widthPixel(8),
     },
-    receivedBubble: {
+    sentBubble: {
         backgroundColor: palette['grey--2'],
     },
     messageText: {
@@ -36,5 +36,15 @@ export const styles = StyleSheet.create({
         width: widthPixel(28),
         height: widthPixel(28),
         borderRadius: widthPixel(14),
+        marginRight: pixelSizeHorizontal(8),
     },
+    lottieContainer: {
+        width: widthPixel(20),
+        height: heightPixel(20),
+    },
+    lottieImage: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+    }
 });
