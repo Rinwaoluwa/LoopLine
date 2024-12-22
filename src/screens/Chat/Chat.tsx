@@ -35,7 +35,6 @@ export function Chat({ navigation }: any) {
 
     const onSubmit = (data: { message: string }) => {
         if (data.message.trim()) {
-            console.log(data.message.trim());
             setInputMessage(data.message.trim());
             handleSendMessage(data.message.trim());
             

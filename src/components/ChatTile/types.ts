@@ -1,5 +1,11 @@
 export interface ChatTileProps {
     avatar: string;
     username: string;
-    lastMessage: string;
+}
+
+export interface Message {
+    id: string;
+    text: string;
+    sender: 'user' | 'bot';
+    timestamp: string;
 }

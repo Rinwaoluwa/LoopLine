@@ -49,27 +49,6 @@ export function Feed({ navigation }: any) {
 
     const query = getValues("search");
 
-    const data2 = [
-        {
-            id: 1,
-            category: "Technology",
-            date: "Jan 3nd 2024",
-            title: "whatchu mean you don't got time for that",
-        },
-        {
-            id: 2,
-            category: "Movie",
-            date: "Jan 3nd 2024",
-            title: "Sup poola makiato",
-        },
-        {
-            id: 3,
-            category: "Food",
-            date: "Jan 3nd 2024",
-            title: "New cucumber salade",
-        },
-    ]
-
     const onSubmit = ({ search }: { search: string }) => {
         const fetch = async () => {
             setLoadingTopStories(true);
@@ -114,7 +93,9 @@ export function Feed({ navigation }: any) {
 
     }
 
-    if (!topStories.length || !articles.length) {
+    if ((!isLoadingTopStories && !topStories.length) || 
+        (!isLoadingArticles && !articles.length)
+    ) {
         return (
             <>
                 <EmptyState />
@@ -204,6 +185,7 @@ export function Feed({ navigation }: any) {
                                 category={selectedCategory.label}
                                 date={item.date}
                                 title={item.title}
+                                onPress={() => navigation.navigate("article", {...item, image: item.multimedia,category: selectedCategory.label})}
                             />
                         )}
                     />

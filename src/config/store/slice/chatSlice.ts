@@ -8,13 +8,11 @@ interface Message {
 }
 
 interface ChatState {
-  messages: Message[];
-  lastMessage: Message | null;
+  lastMessage: Message | "";
 }
 
 const initialState: ChatState = {
-  messages: [],
-  lastMessage: null
+  lastMessage: "",
 };
 
 const chatSlice = createSlice({
@@ -22,12 +20,10 @@ const chatSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action: PayloadAction<Message>) => {
-      state.messages = [...state.messages, action.payload];
       state.lastMessage = action.payload;
     },
     clearChat: (state) => {
-      state.messages = [];
-      state.lastMessage = null;
+      state.lastMessage = "";
     }
   }
 });

@@ -22,7 +22,7 @@ export function ArticleCard({
 }: ArticleCardProps) {
     const dispatch = useAppDispatch();
     const bookmarks = useAppSelector((state: RootState) => state.bookmarks);
-    const isBookmarked = bookmarks.find(bookmark => bookmark.id === id);
+    const isBookmarked = bookmarks.bookmarks.find(bookmark => bookmark.id === id);
     const [saved, setSaved] = useState(isBookmarked?.isBookmarked ?? false);
 
 

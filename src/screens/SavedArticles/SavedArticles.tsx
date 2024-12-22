@@ -13,7 +13,7 @@ export function SavedArticles({ navigation }: any) {
     const bookmarks = useAppSelector((state: RootState) => state.bookmarks);
     return (
         <Box>
-            {bookmarks.length === 0 ? (
+            {bookmarks.bookmarks.length === 0 ? (
                 <>
                     <EmptyState />
                     <AppText
@@ -28,7 +28,7 @@ export function SavedArticles({ navigation }: any) {
                     <AppText fontFamily="OpenSans-Bold" style={styles.textStyle} fontSize={20}>Bookmarks</AppText>
                     <Spacing height={24} />
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {bookmarks.map((bookmark, index) => (
+                        {bookmarks.bookmarks.map((bookmark, index) => (
                             <View key={bookmark.id + index}>
                                 <ArticleTile
                                     image={bookmark.image}

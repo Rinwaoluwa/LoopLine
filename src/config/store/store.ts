@@ -1,32 +1,13 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import bookmarks from "./slice/bookmarkSlice";
-import chats from "./slice/chatSlice";
-
-const persistConfig = {
-  key: "root",
-  storage,
-};
-
-const rootReducer = combineReducers({
-  bookmarks,
-  chats,
-});
-
-const persistedReducer = persistReducer(persistConfig, bookmarks);
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import { persistedReducer } from "./reducers";
 
 export const store = configureStore({
   reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [
-          "persist/PERSIST",
-          "persist/REHYDRATE",
-          "persist/REGISTER",
-        ],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
