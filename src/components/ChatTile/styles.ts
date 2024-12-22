@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         gap: normalise(16),
+        alignItems: "center",
     },
     imageStyle: {
         height: heightPixel(56),
